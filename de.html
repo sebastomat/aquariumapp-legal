@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AquariumAI — Datenschutzerklärung</title>
+<style>
+  body { font-family: -apple-system, Segoe UI, Roboto, sans-serif; max-width: 720px; margin: 3rem auto; padding: 0 1rem; line-height: 1.6; color: #1a1a1a; }
+  h1 { font-size: 1.6rem; }
+  h2 { font-size: 1.15rem; margin-top: 2rem; }
+  code { background: #f0f0f0; padding: 0.1rem 0.3rem; border-radius: 3px; }
+  .todo { background: #fff3cd; border: 1px solid #ffe08a; padding: 0.75rem 1rem; border-radius: 6px; }
+  footer { margin-top: 3rem; font-size: 0.85rem; color: #666; }
+  a { color: #0b6e6e; }
+</style>
+</head>
+<body>
+<p><a href="./index.html">← Sprache wechseln / change language</a></p>
+<h1>Datenschutzerklärung — AquariumAI</h1>
+<p><em>Stand: [DATUM]</em></p>
+
+<h2>Verantwortlicher</h2>
+<p class="todo">[PLATZHALTER: Name, Anschrift, E-Mail-Adresse des Verantwortlichen einfügen, bevor diese Seite live/verlinkt wird.]</p>
+
+<h2>Kurzfassung</h2>
+<p>AquariumAI erhebt keine Telemetrie, verlangt kein Nutzerkonto und keine Registrierung. Alle
+deine Daten (Becken, Aufgaben, Besatz, Fotos, Wasserwerte, Dosier-Historie) bleiben ausschließlich
+lokal auf deinem Gerät gespeichert. Es gibt keinen eigenen Server, über den deine Daten laufen.</p>
+
+<h2>Welche Daten wohin gehen</h2>
+<p>Es gibt genau zwei Situationen, in denen die App überhaupt mit einem externen Dienst
+kommuniziert — beide ausschließlich direkt von deinem Gerät aus, ohne einen Server von uns
+dazwischen:</p>
+
+<h3>1. KI-Pflege-Steckbriefe (optionale Funktion, standardmäßig deaktiviert)</h3>
+<p>Wenn du diese Funktion aktivierst und für eine Art einen Steckbrief abrufst, wird
+<strong>ausschließlich der Artname</strong> an die Claude-API von Anthropic
+(<code>api.anthropic.com</code>) gesendet. Es werden keine Becken-, Foto-, Standort- oder sonstigen
+Nutzerdaten übertragen. Die Anfrage erfolgt mit deinem eigenen, selbst hinterlegten
+Anthropic-API-Schlüssel (Bring-your-own-Key) — die App selbst liefert keinen Schlüssel mit und
+verdient nichts an der Nutzung. Dein API-Schlüssel wird verschlüsselt im Android Keystore
+gespeichert und verlässt das Gerät ausschließlich zur Authentifizierung gegenüber der Claude-API.
+Wie Anthropic diese Anfragen verarbeitet, regelt deren eigene Datenschutzerklärung
+(<a href="https://www.anthropic.com/legal/privacy">anthropic.com/legal/privacy</a>).</p>
+
+<h3>2. Foto-Vorschläge für Besatz-Einträge (Teil derselben optionalen KI-Funktion)</h3>
+<p>Bei der Bildersuche für einen Steckbrief wird der (meist wissenschaftliche) Artname an die
+offene Wikimedia-Commons-API (<code>commons.wikimedia.org</code>, <code>meta.wikimedia.org</code>)
+gesendet, um passende, lizenzfreie Fotos vorzuschlagen. Dabei werden keine personenbezogenen oder
+Nutzungsdaten übertragen — nur der Suchbegriff, wie bei jeder normalen Websuche.</p>
+
+<h2>Was sonst lokal bleibt</h2>
+<ul>
+  <li>Becken-, Aufgaben-, Besatz- und Wasserwerte-Daten in einer lokalen Datenbank auf dem Gerät.</li>
+  <li>Selbst aufgenommene oder ausgewählte Fotos im internen App-Speicher.</li>
+  <li>Ein optionaler JSON-Backup-Export liegt dort, wo du ihn speicherst — Weitergabe (z. B. per
+      E-Mail-Anhang) liegt in deiner eigenen Verantwortung.</li>
+</ul>
+
+<h2>Berechtigungen und wofür sie gebraucht werden</h2>
+<ul>
+  <li><strong>Internet</strong> — nur für die zwei oben genannten optionalen Fälle (KI-Steckbrief,
+      Foto-Suche).</li>
+  <li><strong>Kamera</strong> — für selbst aufgenommene Besatz-Fotos; Fotos werden nur lokal
+      gespeichert.</li>
+  <li><strong>Benachrichtigungen, exakte Erinnerungen, Neustart-Empfang, Vibration,
+      Wake-Lock</strong> — ausschließlich für lokale Erinnerungen an fällige Pflegeaufgaben; dabei
+      werden keine Daten übertragen.</li>
+</ul>
+
+<h2>Weitergabe an Dritte</h2>
+<p>Außer den zwei oben beschriebenen, von dir aktiv ausgelösten Fällen (Anthropic, Wikimedia) gibt
+es keine Weitergabe von Daten an Dritte. Kein Verkauf von Daten, kein Tracking, keine Werbung,
+keine Analyse-/Crash-Reporting-Dienste.</p>
+
+<h2>Deine Rechte</h2>
+<p>Da alle App-eigenen Daten ausschließlich lokal auf deinem Gerät liegen, hast du jederzeit volle
+Kontrolle: Einsicht, Änderung und Löschung erfolgen direkt in der App bzw. durch Deinstallation.
+Für Fragen zu den beiden externen Diensten wende dich an die jeweiligen Anbieter (Anthropic,
+Wikimedia) oder an uns unter der oben genannten Kontaktadresse.</p>
+
+<h2>Änderungen dieser Erklärung</h2>
+<p>Diese Seite wird bei relevanten Änderungen der App aktualisiert; das Datum oben zeigt den
+letzten Stand.</p>
+
+<footer>AquariumAI ist eine unabhängige App, nicht verbunden mit Anthropic oder der Wikimedia
+Foundation.</footer>
+</body>
+</html>
