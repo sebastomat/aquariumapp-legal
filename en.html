@@ -17,7 +17,7 @@
 <body>
 <p><a href="./index.html">← change language / Sprache wechseln</a></p>
 <h1>Privacy Policy — AquariumAI</h1>
-<p><em>Last updated: September 2, 2026</em></p>
+<p><em>Last updated: September 13, 2026</em></p>
 
 <h2>Data controller</h2>
 <p>Sebastian Greuzinger<br>Email: <a href="mailto:greuzinger+aquariumai@gmail.com">greuzinger+aquariumai@gmail.com</a></p>
@@ -26,21 +26,37 @@
 <p>AquariumAI collects no telemetry, requires no user account, and no registration. All your data
 (tanks, tasks, stock, photos, water parameters, dosing history) stays exclusively on your device.
 There is no server of ours in between.</p>
+<p>If you use the optional AI advisor, however, a dossier of your tank does leave the device and is
+sent to Anthropic's Claude API — section 2 below describes exactly what it contains.</p>
 
 <h2>What data goes where</h2>
-<p>There are exactly two situations in which the app talks to an external service at all — both
-strictly directly from your device, with no server of ours in between:</p>
+<p>There are three situations in which the app talks to an external service at all — all of them
+strictly directly from your device, with no server of ours in between. All three are optional and
+off by default:</p>
 
-<h3>1. AI care profiles (optional feature, off by default)</h3>
+<h3>1. AI care profiles and fertilizer research (optional feature, off by default)</h3>
 <p>If you enable this feature and fetch a care profile for a species, <strong>only the species
-name</strong> is sent to Anthropic's Claude API (<code>api.anthropic.com</code>). No tank, photo,
-location, or other user data is transmitted. The request uses your own, self-provided Anthropic
+name</strong> is sent to Anthropic's Claude API (<code>api.anthropic.com</code>). If you have the
+ingredients of a fertilizer researched, <strong>the brand and name of that fertilizer</strong> go to
+the same interface. In both cases no tank, photo, location, or other user data is transmitted. The
+request uses your own, self-provided Anthropic
 API key (bring-your-own-key) — the app itself does not ship a key and does not earn anything from
 usage. Your API key is stored encrypted in the Android Keystore and leaves the device only to
 authenticate against the Claude API. How Anthropic processes these requests is governed by their
 own privacy policy (<a href="https://www.anthropic.com/legal/privacy">anthropic.com/legal/privacy</a>).</p>
 
-<h3>2. Photo suggestions for stock entries (part of the same optional AI feature)</h3>
+<h3>2. AI advisor (optional feature, off by default)</h3>
+<p>When you start a consultation, a <strong>text dossier of your tank</strong> is sent to Anthropic's
+Claude API: the tank's basic data, its livestock including key figures from profiles you already
+fetched, recorded water parameters, dosings, the care plan and a condensed history of the last 90
+days — together with the questions you ask in the dialogue. Free-text notes on tanks, livestock,
+tests and history are included by default and can be switched off in the settings.</p>
+<p>Before your first consultation, a dialogue in the app explains this; you can withdraw that consent
+in the settings at any time. A preview shows you the complete text word for word before it is sent.
+<strong>Photos and your API key are never transmitted.</strong> These requests, too, use your own
+Anthropic key and go directly from your device.</p>
+
+<h3>3. Photo suggestions for stock entries (part of the same optional AI feature)</h3>
 <p>When searching for photos for a profile, the (usually scientific) species name is sent to the
 open Wikimedia Commons API (<code>commons.wikimedia.org</code>, <code>meta.wikimedia.org</code>) to
 suggest matching, license-free photos. No personal or usage data is transmitted — just the search
@@ -48,7 +64,9 @@ term, like any regular web search.</p>
 
 <h2>What else stays local</h2>
 <ul>
-  <li>Tank, task, stock, and water-parameter data in a local database on your device.</li>
+  <li>Tank, task, stock, water-parameter and dosing data in a local database on your device.</li>
+  <li>The history of your consultations — questions, answers and the dossier that was sent — stays
+      in that same local database and can be deleted individually in the app.</li>
   <li>Photos you take or pick, stored in the app's internal storage.</li>
   <li>An optional JSON backup export is stored wherever you save it — sharing it (e.g. via email
       attachment) is your own responsibility.</li>
@@ -56,14 +74,15 @@ term, like any regular web search.</p>
 
 <h2>Permissions and why they're needed</h2>
 <ul>
-  <li><strong>Internet</strong> — only for the two optional cases above (AI profile, photo search).</li>
+  <li><strong>Internet</strong> — only for the optional cases above (AI profile, fertilizer
+      research, AI advisor, photo search).</li>
   <li><strong>Camera</strong> — for photos you take of your stock; photos are stored locally only.</li>
   <li><strong>Notifications, exact alarms, boot receiver, vibration, wake lock</strong> — solely for
       local reminders about due care tasks; no data is transmitted for this.</li>
 </ul>
 
 <h2>Sharing with third parties</h2>
-<p>Other than the two cases described above, which you actively trigger yourself (Anthropic,
+<p>Other than the cases described above, which you actively trigger yourself (Anthropic,
 Wikimedia), there is no sharing of data with third parties. No sale of data, no tracking, no ads, no
 analytics or crash-reporting services.</p>
 

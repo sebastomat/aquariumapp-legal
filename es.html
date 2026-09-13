@@ -17,7 +17,7 @@
 <body>
 <p><a href="./index.html">← cambiar idioma / change language</a></p>
 <h1>Política de privacidad — AquariumAI</h1>
-<p><em>Última actualización: 2 de septiembre de 2026</em></p>
+<p><em>Última actualización: 13 de septiembre de 2026</em></p>
 
 <h2>Responsable del tratamiento</h2>
 <p>Sebastian Greuzinger<br>Correo electrónico: <a href="mailto:greuzinger+aquariumai@gmail.com">greuzinger+aquariumai@gmail.com</a></p>
@@ -26,23 +26,40 @@
 <p>AquariumAI no recopila datos de telemetría, no requiere cuenta de usuario ni registro. Todos tus
 datos (acuarios, tareas, población, fotos, valores del agua, historial de dosificación) permanecen
 exclusivamente en tu dispositivo. No existe un servidor propio de por medio.</p>
+<p>Sin embargo, si utilizas el asesor de IA opcional, un dosier de tu acuario sí sale del dispositivo
+y se envía a la API de Claude de Anthropic — la sección 2 describe exactamente qué contiene.</p>
 
 <h2>Qué datos van a dónde</h2>
-<p>Hay exactamente dos situaciones en las que la app se comunica con un servicio externo — ambas
-directamente desde tu dispositivo, sin ningún servidor nuestro de por medio:</p>
+<p>Hay tres situaciones en las que la app se comunica con un servicio externo — todas ellas
+directamente desde tu dispositivo, sin ningún servidor nuestro de por medio. Las tres son opcionales
+y están desactivadas por defecto:</p>
 
-<h3>1. Fichas de cuidado con IA (función opcional, desactivada por defecto)</h3>
+<h3>1. Fichas de cuidado con IA e investigación de fertilizantes (función opcional, desactivada por defecto)</h3>
 <p>Si activas esta función y obtienes una ficha para una especie, se envía
 <strong>únicamente el nombre de la especie</strong> a la API de Claude de Anthropic
-(<code>api.anthropic.com</code>). No se transmiten datos de acuarios, fotos, ubicación ni otros
-datos de usuario. La solicitud usa tu propia clave API de Anthropic, proporcionada por ti mismo
+(<code>api.anthropic.com</code>). Si haces investigar los ingredientes de un fertilizante, se envían
+<strong>la marca y el nombre del producto</strong> a la misma interfaz. En ambos casos no se
+transmiten datos de acuarios, fotos, ubicación ni otros datos de usuario. La solicitud usa tu propia clave API de Anthropic, proporcionada por ti mismo
 (bring-your-own-key) — la app no incluye ninguna clave propia ni obtiene beneficio del uso. Tu
 clave API se guarda cifrada en el Android Keystore y solo sale del dispositivo para autenticarse
 ante la API de Claude. El tratamiento de estas solicitudes por parte de Anthropic se rige por su
 propia política de privacidad
 (<a href="https://www.anthropic.com/legal/privacy">anthropic.com/legal/privacy</a>).</p>
 
-<h3>2. Sugerencias de fotos para entradas de población (parte de la misma función opcional de IA)</h3>
+<h3>2. Asesor de IA (función opcional, desactivada por defecto)</h3>
+<p>Cuando inicias una consulta, se envía un <strong>dosier de texto de tu acuario</strong> a la API de
+Claude de Anthropic: los datos básicos del acuario, la población con los valores clave de las fichas
+ya obtenidas, los parámetros del agua registrados, las dosificaciones, el plan de cuidados y un
+historial resumido de los últimos 90 días — junto con las preguntas que hagas en el diálogo. Las
+notas de texto libre sobre acuarios, población, análisis e historial se incluyen por defecto y
+pueden desactivarse en los ajustes.</p>
+<p>Antes de la primera consulta, un diálogo en la app te informa de ello; puedes retirar ese
+consentimiento en los ajustes en cualquier momento. Una vista previa te muestra el texto completo,
+palabra por palabra, antes de enviarlo. <strong>Las fotos y tu clave API nunca se
+transmiten.</strong> Estas solicitudes también usan tu propia clave de Anthropic y salen
+directamente desde tu dispositivo.</p>
+
+<h3>3. Sugerencias de fotos para entradas de población (parte de la misma función opcional de IA)</h3>
 <p>Al buscar fotos para una ficha, se envía el nombre de la especie (normalmente el científico) a la
 API abierta de Wikimedia Commons (<code>commons.wikimedia.org</code>, <code>meta.wikimedia.org</code>)
 para sugerir fotos libres de licencia. No se transmiten datos personales ni de uso — solo el término
@@ -50,8 +67,10 @@ de búsqueda, como en cualquier búsqueda web normal.</p>
 
 <h2>Qué más permanece local</h2>
 <ul>
-  <li>Datos de acuarios, tareas, población y valores del agua en una base de datos local en tu
-      dispositivo.</li>
+  <li>Datos de acuarios, tareas, población, valores del agua y dosificaciones en una base de datos
+      local en tu dispositivo.</li>
+  <li>El historial de tus consultas — preguntas, respuestas y el dosier enviado — permanece en esa
+      misma base de datos local y puede eliminarse individualmente en la app.</li>
   <li>Fotos que tomes o selecciones, guardadas en el almacenamiento interno de la app.</li>
   <li>Una copia de seguridad JSON opcional se guarda donde tú decidas — compartirla (p. ej. por
       correo electrónico) es tu propia responsabilidad.</li>
@@ -59,8 +78,8 @@ de búsqueda, como en cualquier búsqueda web normal.</p>
 
 <h2>Permisos y para qué se usan</h2>
 <ul>
-  <li><strong>Internet</strong> — solo para los dos casos opcionales anteriores (ficha con IA,
-      búsqueda de fotos).</li>
+  <li><strong>Internet</strong> — solo para los casos opcionales anteriores (ficha con IA,
+      investigación de fertilizantes, asesor de IA, búsqueda de fotos).</li>
   <li><strong>Cámara</strong> — para fotos que tomes de tu población; las fotos se guardan solo
       localmente.</li>
   <li><strong>Notificaciones, alarmas exactas, receptor de arranque, vibración, wake lock</strong> —
@@ -69,7 +88,7 @@ de búsqueda, como en cualquier búsqueda web normal.</p>
 </ul>
 
 <h2>Compartición con terceros</h2>
-<p>Aparte de los dos casos descritos arriba, que activas tú mismo (Anthropic, Wikimedia), no hay
+<p>Aparte de los casos descritos arriba, que activas tú mismo (Anthropic, Wikimedia), no hay
 compartición de datos con terceros. Sin venta de datos, sin seguimiento, sin publicidad, sin
 servicios de análisis o reporte de fallos.</p>
 
