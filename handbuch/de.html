@@ -1,0 +1,1226 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="Anwenderhandbuch der Aquarienpflege-App AquariumAI: Aufgaben und Erinnerungen, Besatz, Wasserwerte, Düngung, KI-Berater, Backup und Datenschutz.">
+<title>AquariumAI Handbuch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --ground: #F1F4F0;
+    --paper: #FFFFFF;
+    --sunk: #E7ECE7;
+    --ink: #10312B;
+    --ink-soft: #4A5F59;
+    --ink-faint: #6F817B;
+    --rule: #D3DCD6;
+    --accent: #0E7A6E;
+    --accent-soft: #DCEBE7;
+    --amber: #8A5710;
+    --amber-soft: #F5EADA;
+    --rust: #97341F;
+    --rust-soft: #F6E3DD;
+    --shadow: 0 1px 2px rgba(16, 49, 43, .06);
+
+    --display: "Fraunces", Georgia, "Times New Roman", serif;
+    --body: "Public Sans", -apple-system, "Segoe UI", Roboto, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+    --measure: 68ch;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #0B1614;
+      --paper: #12211E;
+      --sunk: #182925;
+      --ink: #E3ECE7;
+      --ink-soft: #AEC0BA;
+      --ink-faint: #869893;
+      --rule: #243934;
+      --accent: #4FB8A8;
+      --accent-soft: #14322E;
+      --amber: #D9A45C;
+      --amber-soft: #2C2418;
+      --rust: #E0866C;
+      --rust-soft: #2E1B16;
+      --shadow: 0 1px 2px rgba(0, 0, 0, .35);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground: #0B1614;
+    --paper: #12211E;
+    --sunk: #182925;
+    --ink: #E3ECE7;
+    --ink-soft: #AEC0BA;
+    --ink-faint: #869893;
+    --rule: #243934;
+    --accent: #4FB8A8;
+    --accent-soft: #14322E;
+    --amber: #D9A45C;
+    --amber-soft: #2C2418;
+    --rust: #E0866C;
+    --rust-soft: #2E1B16;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .35);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 24px 96px;
+    display: grid;
+    grid-template-columns: 232px minmax(0, 1fr);
+    gap: 56px;
+    align-items: start;
+  }
+
+  /* ---------- Kopf ---------- */
+  header.masthead {
+    grid-column: 1 / -1;
+    padding: 56px 0 32px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 14px;
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(2.3rem, 5vw, 3.4rem);
+    line-height: 1.08;
+    letter-spacing: -.015em;
+    margin: 0 0 16px;
+    text-wrap: balance;
+  }
+
+  .lede {
+    max-width: var(--measure);
+    font-size: 1.12rem;
+    color: var(--ink-soft);
+    margin: 0 0 28px;
+  }
+
+  .facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 40px;
+    margin: 0;
+    padding: 0;
+  }
+  .facts div {
+    padding: 8px 0;
+  }
+  .facts dt {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 2px;
+  }
+  .facts dd {
+    margin: 0;
+    font-size: .95rem;
+    font-weight: 500;
+  }
+
+  /* ---------- Navigation ---------- */
+  nav.toc {
+    position: sticky;
+    top: 24px;
+    font-size: .88rem;
+    padding-top: 40px;
+  }
+  nav.toc p {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin: 0 0 10px;
+  }
+  nav.toc ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border-left: 1px solid var(--rule);
+  }
+  nav.toc a {
+    display: block;
+    padding: 4px 0 4px 14px;
+    margin-left: -1px;
+    border-left: 2px solid transparent;
+    color: var(--ink-soft);
+    text-decoration: none;
+  }
+  nav.toc a:hover,
+  nav.toc a:focus-visible {
+    color: var(--accent);
+    border-left-color: var(--accent);
+  }
+
+  /* ---------- Inhalt ---------- */
+  main {
+    padding-top: 40px;
+    min-width: 0;
+  }
+
+  section {
+    padding-top: 16px;
+    margin-bottom: 60px;
+    scroll-margin-top: 24px;
+  }
+
+  section > .eyebrow { margin-bottom: 6px; }
+
+  h2 {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 1.85rem;
+    line-height: 1.2;
+    letter-spacing: -.01em;
+    margin: 0 0 14px;
+    text-wrap: balance;
+  }
+
+  h3 {
+    font-family: var(--body);
+    font-weight: 600;
+    font-size: 1.05rem;
+    letter-spacing: .005em;
+    margin: 34px 0 10px;
+  }
+
+  p, ul, ol { max-width: var(--measure); }
+  p { margin: 0 0 14px; }
+
+  main ul, main ol { padding-left: 20px; margin: 0 0 16px; }
+  main li { margin-bottom: 7px; }
+
+  a { color: var(--accent); }
+
+  strong { font-weight: 600; }
+
+  code, .val {
+    font-family: var(--mono);
+    font-size: .87em;
+    background: var(--sunk);
+    border-radius: 3px;
+    padding: 1px 5px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ---------- Schritte ---------- */
+  ol.steps {
+    list-style: none;
+    counter-reset: step;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: var(--measure);
+  }
+  ol.steps li {
+    counter-increment: step;
+    position: relative;
+    padding-left: 42px;
+    margin: 0;
+  }
+  ol.steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 1px;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 12px;
+    display: grid;
+    place-items: center;
+  }
+
+  /* ---------- Tabellen ---------- */
+  .scroller {
+    overflow-x: auto;
+    margin: 0 0 20px;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    background: var(--paper);
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: .9rem;
+  }
+  caption {
+    caption-side: top;
+    text-align: left;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    padding: 12px 14px 6px;
+  }
+  th, td {
+    text-align: left;
+    padding: 9px 14px;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+  }
+  thead th {
+    font-size: 11px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  td.num, th.num {
+    font-family: var(--mono);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  /* ---------- Hinweiskästen ---------- */
+  .callout {
+    max-width: var(--measure);
+    border-left: 3px solid var(--accent);
+    background: var(--accent-soft);
+    padding: 14px 18px;
+    margin: 0 0 20px;
+    border-radius: 0 4px 4px 0;
+  }
+  .callout p { margin: 0; }
+  .callout p + p { margin-top: 8px; }
+  .callout .tag {
+    display: block;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    color: var(--accent);
+  }
+  .callout.cost { border-left-color: var(--amber); background: var(--amber-soft); }
+  .callout.cost .tag { color: var(--amber); }
+  .callout.warn { border-left-color: var(--rust); background: var(--rust-soft); }
+  .callout.warn .tag { color: var(--rust); }
+
+  /* ---------- Bereichs-Karte ---------- */
+  .areas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 22px;
+  }
+  .areas div {
+    background: var(--paper);
+    padding: 14px 16px;
+  }
+  .areas h4 {
+    margin: 0 0 4px;
+    font-size: .95rem;
+    font-weight: 600;
+  }
+  .areas p {
+    margin: 0;
+    font-size: .85rem;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+
+  /* ---------- Definitionsreihen ---------- */
+  dl.rows {
+    margin: 0 0 20px;
+    max-width: var(--measure);
+    border-top: 1px solid var(--rule);
+  }
+  dl.rows > div {
+    display: grid;
+    grid-template-columns: 190px minmax(0, 1fr);
+    gap: 18px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  dl.rows dt {
+    font-weight: 600;
+    font-size: .9rem;
+  }
+  dl.rows dd {
+    margin: 0;
+    font-size: .93rem;
+    color: var(--ink-soft);
+  }
+
+  footer {
+    grid-column: 1 / -1;
+    border-top: 1px solid var(--rule);
+    padding-top: 20px;
+    font-size: .85rem;
+    color: var(--ink-faint);
+    max-width: var(--measure);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 860px) {
+    .wrap {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0;
+      padding-bottom: 64px;
+    }
+    nav.toc {
+      position: static;
+      padding: 28px 0 0;
+      max-width: none;
+    }
+    nav.toc ol {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 2px 16px;
+      border-left: none;
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 14px;
+    }
+    nav.toc a { padding: 2px 0; border-left: none; }
+    dl.rows > div { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+    main { padding-top: 28px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <p class="eyebrow">Anwenderhandbuch · Stand 27.09.2026</p>
+    <h1>AquariumAI Handbuch</h1>
+    <p class="lede">
+      Alles, was die App kann: Pflegeaufgaben mit Erinnerungen, Besatz mit KI-Steckbriefen,
+      Wasserwerte mit Zielbändern und Trends, Düngung samt Dosierempfehlung und der KI-Berater,
+      der dein Becken kennt. Diese Seite beschreibt den Stand von Version 1.3.0.
+    </p>
+    <dl class="facts">
+      <div><dt>Plattform</dt><dd>Android</dd></div>
+      <div><dt>Version</dt><dd>1.3.0</dd></div>
+      <div><dt>Sprachen</dt><dd>Deutsch · English · Español</dd></div>
+      <div><dt>Konto nötig</dt><dd>Nein</dd></div>
+      <div><dt>Daten</dt><dd>Bleiben auf dem Gerät</dd></div>
+      <div><dt>KI</dt><dd>Optional, eigener API-Key</dd></div>
+    </dl>
+  </header>
+
+  <nav class="toc" aria-label="Kapitel">
+    <p>Kapitel</p>
+    <ol>
+      <li><a href="#start">Erste Schritte</a></li>
+      <li><a href="#aufbau">Aufbau der App</a></li>
+      <li><a href="#aufgaben">Aufgaben</a></li>
+      <li><a href="#erinnerungen">Erinnerungen</a></li>
+      <li><a href="#becken">Becken</a></li>
+      <li><a href="#besatz">Besatz &amp; Steckbriefe</a></li>
+      <li><a href="#wasserwerte">Wasserwerte</a></li>
+      <li><a href="#duengung">Düngung</a></li>
+      <li><a href="#verlauf">Verlauf</a></li>
+      <li><a href="#ki">KI-Funktionen</a></li>
+      <li><a href="#berater">KI-Berater</a></li>
+      <li><a href="#daten">Daten &amp; Backup</a></li>
+      <li><a href="#einheiten">Maßeinheiten</a></li>
+      <li><a href="#pro">Kostenlos &amp; Pro</a></li>
+      <li><a href="#datenschutz">Datenschutz</a></li>
+      <li><a href="#sprache">Sprache &amp; Formate</a></li>
+      <li><a href="#grenzen">Grenzen</a></li>
+      <li><a href="#hilfe">Wenn etwas klemmt</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <section id="start">
+      <p class="eyebrow">Einstieg</p>
+      <h2>Erste Schritte</h2>
+      <p>
+        Beim ersten Start läuft ein kurzes Willkommens-Tutorial: sieben Folien zu Aufgaben,
+        Becken, KI-Steckbriefen, dem Unterschied zwischen kostenlosen und Pro-Funktionen
+        (siehe <a href="#pro">Kostenlos und Pro</a>) und dem Datenschutz. Auf der letzten Folie
+        erteilst du die beiden Berechtigungen für Erinnerungen — wenn du dort abwinkst, findest du
+        sie später unter <em>Einstellungen → Benachrichtigungen</em>. Danach ist die App sofort
+        einsatzbereit — ohne Konto, ohne Anmeldung, ohne API-Key.
+      </p>
+      <ol class="steps">
+        <li><strong>Becken anlegen.</strong> Im Bereich <em>Becken</em> auf „+“: Name, Volumen in
+          Litern, Maße, Wassertyp, Einrichtungsdatum, Foto und Notizen. Volumen und Maße sind
+          optional, das Volumen wird später aber für Dosierempfehlungen gebraucht.</li>
+        <li><strong>Pflegeaufgaben einrichten.</strong> Im Becken unter <em>Aufgaben</em> auf
+          „+ Aufgabe“. Oben liegt ein Vorlagen-Karussell — ein Tipp auf „Wasserwechsel 30 %“ füllt
+          Titel, Kategorie und Intervall aus.</li>
+        <li><strong>Benachrichtigungen erlauben.</strong> Beim Anlegen der ersten Erinnerung fragt
+          die App nach der Berechtigung. Ohne sie bleibt die Aufgabenliste nutzbar, es kommt aber
+          keine Meldung aufs Handy.</li>
+        <li><strong>Besatz erfassen.</strong> Fische, Pflanzen, Wirbellose oder Korallen mit
+          Anzahl und Zugangsdatum. Das ist die Grundlage für Steckbriefe und für die individuellen
+          Zielbänder bei den Wasserwerten.</li>
+        <li><strong>Optional: KI einschalten.</strong> Unter <em>Mehr → Einstellungen → KI-Funktionen</em>
+          den Hauptschalter aktivieren und einen eigenen Anthropic-API-Key hinterlegen.</li>
+      </ol>
+      <div class="callout">
+        <span class="tag">Ohne KI vollständig nutzbar</span>
+        <p>
+          Becken, Aufgaben, Erinnerungen, Besatz, Wasserwerte, Düngung und Backup funktionieren
+          ohne API-Key. Die KI ist ein Zusatz, kein Tor vor der App.
+        </p>
+      </div>
+    </section>
+
+    <section id="aufbau">
+      <p class="eyebrow">Orientierung</p>
+      <h2>Aufbau der App</h2>
+      <p>Unten stehen fünf Bereiche. Alles andere hängt darunter.</p>
+      <div class="areas">
+        <div>
+          <h4>Aufgaben</h4>
+          <p>Startseite. Was fällig ist, über alle Becken hinweg.</p>
+        </div>
+        <div>
+          <h4>Becken</h4>
+          <p>Liste aller Becken, darin fünf Tabs je Becken.</p>
+        </div>
+        <div>
+          <h4>Besatz</h4>
+          <p>Alle Arten über alle Becken, mit Steckbriefen.</p>
+        </div>
+        <div>
+          <h4>Verlauf</h4>
+          <p>Was erledigt wurde — und wie pünktlich.</p>
+        </div>
+        <div>
+          <h4>Mehr</h4>
+          <p>Einstellungen, Düngemittel-Katalog, Beratungen, Über.</p>
+        </div>
+      </div>
+      <p>
+        Ein Becken öffnet sich mit fünf Tabs: <strong>Übersicht</strong> (Kennzahlen, nächste
+        Aufgaben, bisherige Beratungen), <strong>Aufgaben</strong>, <strong>Besatz</strong>,
+        <strong>Düngung</strong> und <strong>Wasserwerte</strong>.
+      </p>
+    </section>
+
+    <section id="aufgaben">
+      <p class="eyebrow">Pflege</p>
+      <h2>Aufgaben anlegen und abhaken</h2>
+
+      <h3>Der Aufgaben-Bereich</h3>
+      <p>
+        Die Startseite sortiert nach <strong>Überfällig</strong>, <strong>Heute</strong>,
+        <strong>Diese Woche</strong> und <strong>Später</strong>. Jede Zeile zeigt den Farbpunkt
+        des Beckens, ein Kategorie-Icon, den Titel und die Fälligkeit.
+      </p>
+      <dl class="rows">
+        <div><dt>Haken-Knopf</dt><dd>Erledigt in einem Tipp, mit kurzer Bestätigung.</dd></div>
+        <div><dt>Tipp auf die Zeile</dt><dd>Detail-Blatt mit Notiz, optionalem Messwert und den Aktionen Erledigt, Verschieben, Bearbeiten.</dd></div>
+        <div><dt>Wischen nach rechts</dt><dd>Erledigt.</dd></div>
+        <div><dt>Wischen nach links</dt><dd>Verschieben — um einen Tag oder auf ein eigenes Datum.</dd></div>
+      </dl>
+      <p>
+        Ein <strong>Messwert</strong> wird nur dort angeboten, wo eine Zahl Sinn ergibt: Prozent
+        beim Wasserwechsel, Milliliter beim Düngen, Werte beim Wasserwerte-Test. Messwert und
+        Notiz landen im Verlauf.
+      </p>
+
+      <h3>Eine Aufgabe anlegen</h3>
+      <p>
+        Titel, Kategorie, Wiederholung, Ankermodus, Startdatum, Uhrzeit, Erinnerung und Notiz.
+        Bei der Kategorie <em>Filter</em> kommt die Auswahl des Filtermediums dazu
+        (Vorfilterschwamm, Filterwatte, Sinterglas, Aktivkohle, Zeolith, Phosphatadsorber und
+        weitere).
+      </p>
+      <div class="scroller">
+        <table>
+          <caption>Wiederholung</caption>
+          <thead>
+            <tr><th>Modus</th><th>Bedeutung</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Keine</td><td>Einmalige Aufgabe.</td></tr>
+            <tr><td>Täglich</td><td>Jeden Tag zur eingestellten Uhrzeit.</td></tr>
+            <tr><td>Wöchentlich</td><td>An ausgewählten Wochentagen.</td></tr>
+            <tr><td>Monatlich</td><td>An einem festen Tag im Monat.</td></tr>
+            <tr><td>Alle N Tage</td><td>Freies Intervall, etwa alle 14 Tage.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Ankermodus — der wichtigste Schalter</h3>
+      <dl class="rows">
+        <div>
+          <dt>Fester Zeitplan</dt>
+          <dd>„Jeden Sonntag.“ Der Termin verschiebt sich nicht, auch wenn du später abhakst.
+            Passend für Prüfungen und Düngung nach Kalender.</dd>
+        </div>
+        <div>
+          <dt>Ab Erledigung</dt>
+          <dd>„Sieben Tage nach dem letzten Wasserwechsel.“ Der nächste Termin zählt ab dem
+            Abhaken. Der Normalfall für Wartung.</dd>
+        </div>
+      </dl>
+      <p>
+        Beim <strong>Bearbeiten</strong> gibt es zusätzlich das Feld <em>Nächste Fälligkeit</em>:
+        ein konkreter Termin, frei wählbar, mit dem Knopf „Aus Wiederholung neu berechnen“. Er
+        gilt nur für den nächsten Termin, danach greift wieder die Regel. Eine Titeländerung
+        verschiebt die Fälligkeit ausdrücklich nicht.
+      </p>
+
+      <h3>Mitgelieferte Vorlagen</h3>
+      <p>Ein Tipp legt die Aufgabe mit vorbelegtem Intervall an; alles bleibt änderbar.</p>
+      <div class="scroller">
+        <table>
+          <caption>Vorlagen-Karussell</caption>
+          <thead>
+            <tr><th>Vorlage</th><th class="num">Intervall</th><th>Anker</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Wasserwechsel 30 %</td><td class="num">7 Tage</td><td>ab Erledigung</td></tr>
+            <tr><td>Bodengrund absaugen (Mulm)</td><td class="num">14 Tage</td><td>ab Erledigung</td></tr>
+            <tr><td>Vorfilter / Schwamm ausspülen</td><td class="num">14 Tage</td><td>ab Erledigung</td></tr>
+            <tr><td>Filterwatte tauschen</td><td class="num">30 Tage</td><td>ab Erledigung</td></tr>
+            <tr><td>Biomedium teilweise tauschen</td><td class="num">180 Tage</td><td>ab Erledigung</td></tr>
+            <tr><td>Aktivkohle tauschen</td><td class="num">30 Tage</td><td>ab Erledigung</td></tr>
+            <tr><td>Makronährstoffe düngen</td><td class="num">7 Tage</td><td>fester Zeitplan</td></tr>
+            <tr><td>Mikronährstoffe / Eisen düngen</td><td class="num">3 Tage</td><td>fester Zeitplan</td></tr>
+            <tr><td>CO₂-Flasche / Blasenzahl prüfen</td><td class="num">14 Tage</td><td>fester Zeitplan</td></tr>
+            <tr><td>Pflanzen zurückschneiden</td><td class="num">21 Tage</td><td>ab Erledigung</td></tr>
+            <tr><td>Scheiben reinigen</td><td class="num">7 Tage</td><td>ab Erledigung</td></tr>
+            <tr><td>Wasserwerte testen</td><td class="num">14 Tage</td><td>fester Zeitplan</td></tr>
+            <tr><td>Temperatur / Heizer prüfen</td><td class="num">7 Tage</td><td>fester Zeitplan</td></tr>
+            <tr><td>Osmosewasser auffüllen</td><td class="num">3 Tage</td><td>fester Zeitplan</td></tr>
+            <tr><td>Beleuchtungsdauer prüfen</td><td class="num">30 Tage</td><td>fester Zeitplan</td></tr>
+            <tr><td>Futter- &amp; Düngervorrat prüfen</td><td class="num">30 Tage</td><td>fester Zeitplan</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        <strong>Kategorien:</strong> Wasserwechsel · Düngen · Filter · Reinigung · Wasserwerte ·
+        Technik · Pflanzenpflege · Fütterung · Nachschub · Sonstiges. Jede hat Icon und Farbe und
+        taucht so in Listen, Verlauf und Diagrammen wieder auf.
+      </p>
+    </section>
+
+    <section id="erinnerungen">
+      <p class="eyebrow">Pflege</p>
+      <h2>Erinnerungen</h2>
+      <p>
+        Die App plant echte System-Alarme statt eines Hintergrunddienstes. Erinnerungen überstehen
+        deshalb Geräteneustarts, Zeitzonenwechsel und App-Updates.
+      </p>
+      <dl class="rows">
+        <div><dt>Vorausplanung</dt><dd>Bei „ab Erledigung“ ein Termin; bei festem Zeitplan alle Termine der nächsten 60 Tage.</dd></div>
+        <div><dt>Weiterhin überfällig</dt><dd>Bleibt eine Aufgabe liegen, erinnert die App bis zu 14 Tage lang täglich — in einem eigenen Kanal „Überfällig“.</dd></div>
+        <div><dt>Vorlaufzeit</dt><dd>Optional: 15 Minuten, 30 Minuten, 1 Stunde oder 1 Tag vorher.</dd></div>
+        <div><dt>Genauigkeit</dt><dd>Standardmäßig auf einige Minuten genau, ohne Sonderberechtigung. „Exakte Erinnerungen“ lassen sich in den Einstellungen zuschalten.</dd></div>
+        <div><dt>Kanäle</dt><dd>Zwei getrennte Android-Kanäle: <em>Pflege</em> und <em>Überfällig</em> — getrennt stummschaltbar.</dd></div>
+      </dl>
+      <p>
+        Jede Benachrichtigung trägt zwei Knöpfe: <strong>Erledigt</strong> und
+        <strong>+1 Tag</strong>. Beide wirken, ohne die App zu öffnen; die Erledigung landet im
+        Verlauf und ist dort mit einem Glocken-Symbol markiert.
+      </p>
+      <p>
+        Unter <em>Einstellungen → Benachrichtigungen</em> steht eine Diagnose: Berechtigungsstatus,
+        Akku-Optimierung, Anzahl geplanter Alarme und der nächste Alarm.
+      </p>
+    </section>
+
+    <section id="becken">
+      <p class="eyebrow">Becken</p>
+      <h2>Becken und ihre Tabs</h2>
+      <p>
+        Die Becken-Liste zeigt Karten mit Foto, Name, Volumen, Wassertyp und einer Zeile wie
+        „3 Aufgaben offen · nächste: Wasserwechsel morgen“.
+      </p>
+      <dl class="rows">
+        <div><dt>Übersicht</dt><dd>Kennzahlen, Alter des Beckens, Notizen, die nächsten drei Aufgaben, der Knopf „Berater fragen“ und die bisherigen Beratungen dieses Beckens.</dd></div>
+        <div><dt>Aufgaben</dt><dd>Alle Aufgaben des Beckens, aktive und inaktive getrennt, mit Intervall-Label.</dd></div>
+        <div><dt>Besatz</dt><dd>Gruppiert nach Fischen, Pflanzen und Wirbellosen; entfernte Tiere bleiben als ausklappbare Historie erhalten.</dd></div>
+        <div><dt>Düngung</dt><dd>Dosier-Protokoll mit Wochen- und Monatssummen je Nährstoff.</dd></div>
+        <div><dt>Wasserwerte</dt><dd>Tests erfassen, Diagramm, Trend, Zielband und Dosierempfehlung.</dd></div>
+      </dl>
+    </section>
+
+    <section id="besatz">
+      <p class="eyebrow">Besatz</p>
+      <h2>Besatz und Steckbriefe</h2>
+      <p>
+        Erfasst werden Art (Fisch, Pflanze, Wirbellos, Koralle), Name mit Autocomplete aus
+        bereits geladenen Steckbriefen, wissenschaftlicher Name, Anzahl, Zugangsdatum, Foto und
+        Notiz. Entfernte Tiere werden nicht gelöscht, sondern mit Abgangsdatum in die Historie
+        gelegt.
+      </p>
+
+      <h3>Fotos</h3>
+      <p>
+        Neben Kamera und Galerie gibt es <strong>„Auf Wikimedia Commons suchen“</strong>, sobald
+        ein Name eingetragen ist. Gesucht wird bevorzugt über den wissenschaftlichen Namen; die
+        Treffer erscheinen als Vorschau-Raster zur Auswahl. Verlangt die Lizenz eine
+        Namensnennung, speichert die App sie mit und zeigt sie am Foto an. Diese Suche ist
+        kostenlos und braucht keinen API-Key.
+      </p>
+
+      <h3>Steckbrief per KI</h3>
+      <p>
+        Nach dem Speichern erscheint „Steckbrief per KI laden“. Das Ergebnis ist keine Textwand,
+        sondern eine strukturierte Karte:
+      </p>
+      <ul>
+        <li><strong>Kopf:</strong> Trivialname, wissenschaftlicher Name, Herkunft, Schwierigkeitsgrad</li>
+        <li><strong>Wasserparameter:</strong> Temperatur, pH und Härte als Bereichsbalken</li>
+        <li><strong>Pflanzen:</strong> Licht, CO₂, Düngung, Wuchshöhe, Platzierung, Vermehrung, Rückschnitt</li>
+        <li><strong>Tiere:</strong> Endgröße, Mindestbecken, Gruppengröße, Schwimmzone, Futter, Lebenserwartung, Zucht</li>
+        <li><strong>Verträglichkeit:</strong> passt zu, meiden, pflanzen- und garnelenverträglich</li>
+        <li><strong>Typische Probleme:</strong> Symptom, Ursache, Abhilfe</li>
+        <li><strong>Aufgabenvorschläge:</strong> per Mehrfachauswahl als echte Pflegeaufgaben übernehmbar</li>
+      </ul>
+      <div class="callout cost">
+        <span class="tag">Kostet Geld — einmal je Art</span>
+        <p>
+          Ein Steckbrief kostet unter einem halben Cent und wird lokal zwischengespeichert.
+          Dieselbe Art wird nie zweimal abgerufen, es sei denn, du tippst ausdrücklich auf
+          „Aktualisieren“.
+        </p>
+      </div>
+      <p>
+        Jeder Steckbrief trägt ein Badge „KI-generiert“ mit Modell und Datum sowie den Hinweis,
+        die Angaben bei Tieren gegenzuprüfen. Was du von Hand änderst, gewinnt dauerhaft und wird
+        von einem späteren Abruf nicht überschrieben.
+      </p>
+    </section>
+
+    <section id="wasserwerte">
+      <p class="eyebrow">Wasser</p>
+      <h2>Wasserwerte, Zielbänder und Trends</h2>
+      <p>
+        Der Wasserwerte-Tab ist das Protokoll deiner Tests. Alle Felder sind optional — ein
+        Tröpfchentest liefert selten alles auf einmal.
+      </p>
+      <div class="scroller">
+        <table>
+          <caption>Erfasste Parameter</caption>
+          <thead>
+            <tr><th>Parameter</th><th class="num">Einheit</th><th>Besonderheit</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Temperatur</td><td class="num">°C</td><td>Zielband aus dem Besatz möglich</td></tr>
+            <tr><td>pH</td><td class="num">—</td><td>Zielband aus dem Besatz möglich</td></tr>
+            <tr><td>KH</td><td class="num">°dKH</td><td>geht in die CO₂-Rechnung ein</td></tr>
+            <tr><td>GH</td><td class="num">°dGH</td><td>Zielband aus dem Besatz möglich</td></tr>
+            <tr><td>NO₂</td><td class="num">mg/l</td><td>kein pauschaler Richtwert</td></tr>
+            <tr><td>NO₃</td><td class="num">mg/l</td><td>Dosierempfehlung möglich</td></tr>
+            <tr><td>PO₄</td><td class="num">mg/l</td><td>Dosierempfehlung möglich</td></tr>
+            <tr><td>Fe</td><td class="num">mg/l</td><td>Dosierempfehlung möglich</td></tr>
+            <tr><td>K</td><td class="num">mg/l</td><td>Dosierempfehlung möglich</td></tr>
+            <tr><td>CO₂</td><td class="num">mg/l</td><td>wird berechnet, nicht erfasst</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        <strong>CO₂</strong> errechnet die App aus KH und pH nach der in der Aquaristik üblichen
+        Näherung <code>CO₂ = 3 × KH × 10^(7−pH)</code>, sobald beide Werte vorliegen. Das ersetzt
+        keinen Dauertest, ist aber der übliche Weg ohne eigenes Testkit.
+      </p>
+
+      <h3>Diagramm</h3>
+      <p>
+        Parameter per Chip auswählen, Zeitfenster 30, 90 oder 365 Tage. Bei NO₃, PO₄, Fe und K
+        legt die App zusätzlich die im selben Zeitraum <strong>dosierte</strong> Menge als
+        gestrichelte Linie darüber — in derselben Einheit, direkt vergleichbar. So sieht man, ob
+        ein steigender Wert an der Düngung liegt oder nicht.
+      </p>
+
+      <h3>Zielband statt Bauchgefühl</h3>
+      <p>
+        Hinter der Kurve liegt ein Band. Welches, hängt davon ab, was die App weiß:
+      </p>
+      <dl class="rows">
+        <div><dt>Richtwert-Bereich</dt><dd>Generische Werte aus gängigen Ratgebern, etwa NO₃ 5–20 mg/l oder pH 6,0–7,5. Immer verfügbar.</dd></div>
+        <div><dt>Zielband aus Besatz</dt><dd>Für Temperatur, pH und GH: die Schnittmenge der Ansprüche aller gehaltenen Arten mit geladenem Steckbrief. Ersetzt den generischen Bereich, sobald berechenbar.</dd></div>
+        <div><dt>Ampel</dt><dd>Der letzte Messwert wird eingeordnet: im Band, knapp daneben (Warnung) oder deutlich außerhalb (kritisch).</dd></div>
+        <div><dt>Limitierende Arten</dt><dd>Unter der Ampel steht, welche Art die Unter- und welche die Obergrenze vorgibt.</dd></div>
+      </dl>
+      <div class="callout warn">
+        <span class="tag">Konflikt im Besatz</span>
+        <p>
+          Überschneiden sich die Ansprüche zweier Arten gar nicht — etwa Diskus und Goldfisch bei
+          der Temperatur —, gibt es keinen Wert, der für alle passt. Die App zeigt dann eine
+          deutliche Warnung mit den Namen und Grenzwerten statt eines Zielbands. Das ist ein
+          Hinweis auf ein strukturelles Besatzproblem, keine Messabweichung.
+        </p>
+      </div>
+
+      <h3>Trend und Dosierempfehlung</h3>
+      <p>
+        Unter dem Diagramm steht die Richtung über den gewählten Zeitraum, etwa
+        <span class="val">↑ Steigend (+3,2 mg/l)</span>. Grundlage ist eine lineare Regression über
+        die Messpunkte; unter drei Punkten sagt die App ausdrücklich, dass der Trend noch nicht
+        aussagekräftig ist. Eine Vorhersage in die Zukunft ist das nicht.
+      </p>
+      <p>
+        Für die vier düngbaren Parameter (NO₃, PO₄, Fe, K) leitet die App daraus eine konkrete
+        Empfehlung ab, etwa „von ~5 auf ~3 ml/Woche“. Sie rechnet mit dem Anker-Dünger — jenem,
+        der im Zeitraum am meisten davon geliefert hat — und zielt auf die Bandmitte, verteilt
+        über zwei Wochen, damit nichts überschwingt. Liegt der Wert im Band oder kehrt er binnen
+        einer Woche dorthin zurück, lautet die Empfehlung „halten“.
+      </p>
+      <div class="callout">
+        <span class="tag">Ehrliche Grenzen</span>
+        <p>
+          Ohne erfassten Dünger oder ohne Beckenvolumen nennt die App nur die Richtung, keine
+          Milliliter. Und weil ein Dünger meist mehrere Nährstoffe trägt, verschiebt eine Änderung
+          für NO₃ zugleich Kalium — darauf weist sie hin. Die Empfehlung ist ein Vorschlag; dosiert
+          wird nie automatisch.
+        </p>
+      </div>
+      <p>
+        Diese Rechnungen laufen vollständig auf dem Gerät. Sie kosten nichts und brauchen keine
+        KI.
+      </p>
+    </section>
+
+    <section id="duengung">
+      <p class="eyebrow">Düngung</p>
+      <h2>Düngung protokollieren</h2>
+      <p>
+        Der Düngung-Tab ist ein Protokoll und bewusst ohne eigene Erinnerungen — dosiert wird
+        meist über eine Pumpe. Wer ans manuelle Düngen erinnert werden will, legt zusätzlich eine
+        normale Aufgabe der Kategorie <em>Düngen</em> an.
+      </p>
+      <dl class="rows">
+        <div><dt>Einzelne Dosierung</dt><dd>Datum und Uhrzeit, beliebig viele Zeilen aus Dünger und Menge in ml, Notiz. Vor dem Speichern zeigt eine Vorschau die daraus folgenden Nährstoffmengen.</dd></div>
+        <div><dt>Dauerdosierung</dt><dd>Startdatum plus dieselben Zeilen, gilt täglich bis zur Änderung. Pro Becken ist eine aktiv; eine neue beendet die vorherige automatisch.</dd></div>
+        <div><dt>Einzelne Tage korrigieren</dt><dd>Jeder erzeugte Tag ist ein normaler Eintrag und lässt sich ändern oder löschen — etwa wenn an einem Tag doch nicht dosiert wurde.</dd></div>
+        <div><dt>Summen</dt><dd>Woche oder Monat, je Nährstoff in mg und, bezogen aufs Beckenvolumen, in mg/l.</dd></div>
+        <div><dt>Aufräumen</dt><dd>„Einträge auswählen“ für Mehrfachauswahl oder „Zeitraum löschen“ für den gerade angezeigten Abschnitt, mit Anzahl im Bestätigungsdialog.</dd></div>
+      </dl>
+
+      <h3>Düngemittel-Katalog</h3>
+      <p>
+        Unter <em>Mehr → Düngemittel-Katalog</em> liegen deine Dünger becken-übergreifend: Marke,
+        Bezeichnung und die Inhaltsstoffe. Die lassen sich von Hand eintragen oder per KI
+        recherchieren — gefragt wird nach der Angabe, die auf deutschen Etiketten steht („Wirkung
+        pro 1 ml auf 50 l“). Das Ergebnis bleibt frei editierbar, und was du änderst, gewinnt.
+      </p>
+      <p>
+        Beim Erfassen einer Dosierung speichert die App die Zusammensetzung als Momentaufnahme
+        mit. Änderst du später die Rezeptur im Katalog oder löschst den Dünger, bleibt die
+        Historie korrekt berechnet.
+      </p>
+    </section>
+
+    <section id="verlauf">
+      <p class="eyebrow">Rückschau</p>
+      <h2>Verlauf</h2>
+      <p>
+        Der Verlauf zeigt, was tatsächlich passiert ist: chronologisch, gruppiert nach Tag, die
+        jüngsten 200 Einträge. Je Eintrag Kategorie, Titel, Becken und die Abweichung zum Plan —
+        <em>„Erledigt, pünktlich“</em>, <em>„Erledigt, 2 Tage nach Termin“</em> oder
+        <em>„Verschoben auf 03.08.2026“</em>. Genau diese Abweichung ist der Erkenntniswert.
+      </p>
+      <p>
+        Über die Kopfzeile lässt sich nach Becken filtern, ein Tipp springt zur Aufgabe. Jede
+        Aufgabe zeigt zusätzlich ihre letzten zehn Einträge direkt im eigenen Formular.
+      </p>
+    </section>
+
+    <section id="ki">
+      <p class="eyebrow">Künstliche Intelligenz</p>
+      <h2>KI-Funktionen einrichten</h2>
+      <p>
+        Die App nutzt die Claude-API von Anthropic nach dem Prinzip <strong>eigener
+        Schlüssel</strong>: Du hinterlegst deinen API-Key, die Nutzung läuft über deinen
+        Anthropic-Account. Mit der App wird kein Schlüssel ausgeliefert.
+      </p>
+      <dl class="rows">
+        <div><dt>Hauptschalter</dt><dd>Standard: aus. Solange er aus ist, erscheint kein einziger KI-Knopf und es geht garantiert keine Anfrage raus.</dd></div>
+        <div><dt>API-Key</dt><dd>Maskiert gespeichert im Android-Keystore. Nie in Logs, nie im Backup, nie im Export.</dd></div>
+        <div><dt>Verbindung testen</dt><dd>Minimale Anfrage, meldet Erfolg oder Fehlerursache samt erkanntem Modell. Kostet Bruchteile eines Cents.</dd></div>
+        <div><dt>Modell</dt><dd>Opus 5 (beste Qualität), Sonnet 5 (günstiger) oder Haiku 4.5 (am günstigsten). Für den Berater getrennt einstellbar.</dd></div>
+        <div><dt>Vor jedem Abruf bestätigen</dt><dd>Standard: an. Dialog mit geschätzten Kosten vor jedem Steckbrief-Abruf.</dd></div>
+        <div><dt>Monatliches Budget</dt><dd>Standard: 1,00 $. Ist es erreicht, blockiert die App weitere Abrufe mit Hinweis, statt still weiterzulaufen.</dd></div>
+        <div><dt>Web-Recherche</dt><dd>Standard: <strong>an</strong>. Ohne sie antwortet das Modell aus dem Gedächtnis, und bei seltenen Arten ist das die häufigste Quelle falscher Pflegewerte. Sie kostet pro Abruf etwas mehr und dauert länger; abschalten kannst du sie hier jederzeit. Die Kostenschätzung vor dem Abruf rechnet die Suchgebühren mit.</dd></div>
+      </dl>
+
+      <h3>Preise und Verbrauch</h3>
+      <div class="scroller">
+        <table>
+          <caption>Preise je Million Token</caption>
+          <thead>
+            <tr><th>Modell</th><th class="num">Eingabe</th><th class="num">Ausgabe</th><th>Rolle</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Claude Opus 5</td><td class="num">5,00 $</td><td class="num">25,00 $</td><td>Standard, bestes Fachwissen</td></tr>
+            <tr><td>Claude Sonnet 5</td><td class="num">2,00 $</td><td class="num">10,00 $</td><td>Sparoption</td></tr>
+            <tr><td>Claude Haiku 4.5</td><td class="num">1,00 $</td><td class="num">5,00 $</td><td>schnell und günstig</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        Unter <em>Einstellungen → KI → Verbrauch</em> stehen Abrufe, Token und geschätzte Kosten
+        für diese Woche, diesen Monat und insgesamt — aufgeteilt nach Steckbriefen, Düngern und
+        Beratungen. Eine eigene Zeile zeigt, was der Zwischenspeicher netto gespart hat.
+      </p>
+      <div class="callout cost">
+        <span class="tag">Grobe Hausnummern</span>
+        <p>
+          Steckbrief: unter 0,5 Cent, einmal je Art. Dünger-Recherche: ähnlich. Eine Beratung:
+          etwa 5 bis 20 Cent, je nach Länge.
+        </p>
+        <p>
+          Die Anzeige ist eine Schätzung aus der im Code hinterlegten Preistabelle. Verbindlich
+          ist die Abrechnung in deinem Anthropic-Konto.
+        </p>
+      </div>
+      <p>
+        Es gibt <strong>keine</strong> Abrufe im Hintergrund: kein Vorausladen, keine Stapel, kein
+        stiller Wiederholungsversuch. Jede Anfrage entsteht durch einen ausdrücklichen Tipp.
+      </p>
+    </section>
+
+    <section id="berater">
+      <p class="eyebrow">Künstliche Intelligenz</p>
+      <h2>Der KI-Berater</h2>
+      <p>
+        Steckbriefe beantworten „Was ist das für eine Art?“, die Rechnungen im Wasserwerte-Tab
+        „Wie steht mein Wert zum Ziel?“. Der Berater beantwortet die dritte Frage:
+        <strong>„Warum ist das so, und was tue ich?“</strong> — im Dialog, mit dem gesamten Becken
+        als Grundlage.
+      </p>
+
+      <h3>Eine Beratung starten</h3>
+      <ol class="steps">
+        <li>In der Becken-Übersicht auf <strong>„Berater fragen“</strong>. Auf den anderen Tabs
+          liegt derselbe Einstieg als Symbol oben rechts.</li>
+        <li>Beim ersten Mal erscheint die <strong>Aufklärung</strong>: was an die API geht, was
+          nie — mit Knopf in die Vorschau.</li>
+        <li><strong>Thema</strong> wählen: Algen, Fischverhalten, Wasserwerte, Düngung,
+          Pflanzenwachstum, Besatz erweitern, Technik, Pflegeplan oder freie Frage.</li>
+        <li><strong>Beobachtung</strong> in eigenen Worten beschreiben.</li>
+        <li>Auf dem Startknopf steht die geschätzte Summe für die erste Antwort. Erst der Tipp
+          darauf löst den Abruf aus.</li>
+      </ol>
+
+      <h3>Was der Berater sieht — das Dossier</h3>
+      <p>
+        Beim Start baut die App ein Textdossier: Becken-Stammdaten, Besatz mit Eckwerten aus
+        bereits geladenen Steckbriefen, Abgänge, die berechneten Zielbänder, alle Wassertests als
+        Tabelle samt Trends, die Düngung der letzten 90 Tage, den Pflegeplan und die verdichtete
+        Pflegehistorie. Über <em>Vorschau</em> liest du diesen Text wortgetreu, bevor er
+        abgeschickt wird — und auch später jederzeit aus dem Chat heraus.
+      </p>
+      <p>
+        Das Dossier wird beim Anlegen <strong>eingefroren</strong>. Das hält die Folgefragen
+        günstig, weil der unveränderte Teil zwischengespeichert wird.
+      </p>
+
+      <h3>Im Gespräch</h3>
+      <dl class="rows">
+        <div><dt>Antwort im Fluss</dt><dd>Der Text läuft beim Schreiben ein. Solange nur nachgedacht wird, steht dort „Denkt nach …“ statt eines leeren Bildschirms.</dd></div>
+        <div><dt>Abbrechen</dt><dd>Beendet den laufenden Turn sofort; die Teilantwort bleibt erhalten.</dd></div>
+        <div><dt>Vorschlagskarten</dt><dd>Schlägt der Berater eine Pflegeaufgabe vor, erscheint sie als Karte. „Als Aufgabe anlegen“ öffnet das vorausgefüllte Formular — gespeichert wird erst, wenn du speicherst. Danach zeigt die Karte „Angelegt ✓“.</dd></div>
+        <div><dt>Zwischenstand</dt><dd>Trägst du mitten in der Beratung etwas nach, erscheint ein Chip „Seit Beginn geändert (2)“. Ein Tipp hängt die Änderungen als Nachricht an — neue Tests, Dosierungen, Aufgaben, Erledigungen und Besatz.</dd></div>
+        <div><dt>Kostenzeile</dt><dd>Über dem Eingabefeld steht dauerhaft, was diese Beratung bisher gekostet hat und wie es zum Monatsbudget steht.</dd></div>
+        <div><dt>Teuer-Hinweis</dt><dd>Ab 0,50 $ in einer Beratung erscheint eine wegwischbare Karte: Eine neue Beratung startet mit kürzerem Verlauf und ist günstiger.</dd></div>
+      </dl>
+      <p>
+        Alte Beratungen findest du in der Becken-Übersicht unter „Beratungen“ und vollständig
+        unter <em>Mehr → Beratungen</em>. Wischen nach links löscht eine Beratung samt Nachrichten
+        und Vorschlägen.
+      </p>
+      <div class="callout warn">
+        <span class="tag">Der Berater ist kein Tierarzt</span>
+        <p>
+          Keine Medikamentendosierung, keine Diagnose, keine Garantie. Jede Antwort trägt den
+          Hinweis „KI-Antwort — bitte prüfen“. Bei kranken Tieren ist fachlicher Rat vor Ort durch
+          nichts zu ersetzen.
+        </p>
+      </div>
+    </section>
+
+    <section id="daten">
+      <p class="eyebrow">Daten</p>
+      <h2>Backup, Import und Löschen</h2>
+      <dl class="rows">
+        <div><dt>Backup exportieren</dt><dd>Eine ZIP-Datei mit allen Nutzdaten als JSON plus den Besatz-Fotos. Der API-Key ist nie enthalten.</dd></div>
+        <div><dt>Enthalten</dt><dd>Becken, Aufgaben, Verlauf, Besatz, Steckbriefe, Dünger, Dosierungen, Dauerdosierungen, Wasserwerte und Beratungen.</dd></div>
+        <div><dt>Nicht enthalten</dt><dd>Geplante Erinnerungen (werden nach dem Import neu erzeugt) und das Verbrauchslog.</dd></div>
+        <div><dt>Importieren</dt><dd>Ersetzt den aktuellen Stand. Sehr alte Backups lassen sich weiterhin einlesen; der Dialog warnt dann, dass Wasserwerte, Düngung und Beratungen darin fehlen.</dd></div>
+        <div><dt>Steckbrief-Cache leeren</dt><dd>Entfernt die gespeicherten KI-Steckbriefe. Ein erneuter Abruf kostet wieder.</dd></div>
+        <div><dt>Alle Daten löschen</dt><dd>Setzt die App auf Werkszustand zurück.</dd></div>
+      </dl>
+      <div class="callout">
+        <p>
+          <strong>Wichtig beim Gerätewechsel:</strong> Die App wird bewusst <em>nicht</em> von
+          Android automatisch in die Cloud gesichert — deine Daten verlassen das Gerät wirklich
+          nicht. Das heißt aber auch: Ohne eigenen Export sind sie mit dem alten Handy weg. Zieh
+          dir vor einem Wechsel ein Backup und lies es auf dem neuen Gerät wieder ein.
+        </p>
+      </div>
+      <p>
+        Ein Becken zu löschen entfernt auch dessen Aufgaben, Besatz, Wasserwerte, Dosierungen,
+        Erinnerungen und Beratungen. Bei einer einzelnen Aufgabe fragt die App, ob die
+        Verlaufseinträge erhalten bleiben sollen.
+      </p>
+    </section>
+
+    <section id="einheiten">
+      <p class="eyebrow">Einstellungen</p>
+      <h2>Maßeinheiten</h2>
+      <p>
+        Unter <em>Einstellungen → Maßeinheiten</em> wählst du zwischen metrisch und US-Einheiten.
+        Voreingestellt ist metrisch; meldet dein Gerät die Vereinigten Staaten als Region, schlägt
+        die App US-Einheiten vor. Maßgeblich ist die Region, nicht die Sprache — wer die
+        Oberfläche auf Englisch stellt, rechnet deswegen nicht in Gallonen.
+      </p>
+      <div class="scroller">
+        <table>
+          <caption>Was sich ändert</caption>
+          <thead>
+            <tr><th>Größe</th><th>Metrisch</th><th>US-Einheiten</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Beckenvolumen</td><td>Liter</td><td>US-Gallonen</td></tr>
+            <tr><td>Beckenmaße</td><td>cm</td><td>Zoll</td></tr>
+            <tr><td>Temperatur</td><td>°C</td><td>°F</td></tr>
+            <tr><td>Karbonat- und Gesamthärte</td><td>°dKH / °dGH</td><td>ppm</td></tr>
+            <tr><td>NO₂, NO₃, PO₄, Fe, K, CO₂</td><td>mg/l</td><td>ppm — derselbe Zahlenwert, nur anders geschrieben</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        <strong>Deine Daten ändern sich dabei nicht.</strong> Gespeichert und im Backup steht immer
+        metrisch; umgerechnet wird nur, was du siehst und eingibst. Du kannst also jederzeit hin
+        und her wechseln, ohne dass eine Messreihe Schaden nimmt.
+      </p>
+      <p>
+        Zwei Stellen bleiben absichtlich metrisch. Der <strong>Dünger-Katalog</strong> rechnet in
+        „mg/l bei 1 ml auf 50 l" — das ist keine Maßeinheit, sondern die Angabe, die auf den
+        Etiketten steht; umgerechnet wäre sie dort nicht mehr wiederzufinden. Und der
+        <strong>KI-Berater</strong> bekommt sein Dossier metrisch, rechnet seine Antworten aber in
+        deine Einheiten um.
+      </p>
+    </section>
+
+    <section id="pro">
+      <p class="eyebrow">Preis</p>
+      <h2>Kostenlos und Pro</h2>
+      <p>
+        Die App ist kostenlos und zeigt keine Werbung. Ein einmaliger Kauf schaltet zwei Bereiche
+        frei — kein Abo, keine laufenden Kosten. Die ersten dreißig Tage nach der Installation ist
+        alles offen, damit du beides in Ruhe ausprobieren kannst; die Restdauer steht unter
+        <em>Mehr → AquariumAI Pro</em>.
+      </p>
+      <dl class="rows">
+        <div><dt>Dauerhaft kostenlos</dt><dd>Becken, Aufgaben, Erinnerungen, Besatz, das Erfassen von Wasserwerten samt Diagramm, Düngung, Verlauf, Backup und die KI-Steckbriefe. Ohne Begrenzung der Anzahl.</dd></div>
+        <div><dt>Pro: Wasserwerte auswerten</dt><dd>Zielband aus deinem Besatz, Ampel zum letzten Messwert, Trend, die Dosierungen im Diagramm und die Dosierempfehlung.</dd></div>
+        <div><dt>Pro: KI-Berater</dt><dd>Neue Beratungen. Deine bisherigen Beratungen kannst du immer lesen, auch ohne Kauf.</dd></div>
+        <div><dt>Was Pro nicht ist</dt><dd>Kein Zugang zur KI-Abrechnung: Die Anfragen laufen weiter über deinen eigenen Anthropic-Key. Pro schaltet die Oberfläche frei, bezahlt wird die KI-Nutzung wie zuvor über dein Anthropic-Konto.</dd></div>
+        <div><dt>Neues Gerät</dt><dd>Play kennt den Kauf pro Google-Konto. Die App fragt bei jedem Start danach; falls sie ihn einmal nicht findet, hilft <em>Kauf wiederherstellen</em> auf der Pro-Seite.</dd></div>
+      </dl>
+      <p>
+        Gesperrt wird nie der Zugang zu deinen eigenen Daten. Wasserwerte eintragen, den Verlauf
+        durchsehen, ein Backup ziehen und alte Beratungen nachlesen geht ohne Kauf — auch nach
+        Ablauf der dreißig Tage.
+      </p>
+    </section>
+
+    <section id="datenschutz">
+      <p class="eyebrow">Datenschutz</p>
+      <h2>Was das Gerät verlässt</h2>
+      <p>
+        Ohne eingeschaltete KI verlässt <strong>nichts</strong> von deinen Daten das Gerät. Es gibt
+        kein Konto, keine Telemetrie und keine Cloud-Synchronisation — auch Androids automatische
+        Sicherung ist ausgeschaltet, deine Becken landen also nicht in deiner Google Drive. Mit
+        eingeschalteter KI gilt:
+      </p>
+      <div class="scroller">
+        <table>
+          <caption>Übertragung an Anthropic</caption>
+          <thead>
+            <tr><th>Funktion</th><th>Was gesendet wird</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Steckbrief</td><td>Ausschließlich der Artname.</td></tr>
+            <tr><td>Dünger-Recherche</td><td>Marke und Bezeichnung des Düngers.</td></tr>
+            <tr><td>Berater</td><td>Das Becken-Dossier: Stammdaten, Besatz, Wasserwerte, Dosierungen, Pflegeplan, 90 Tage Verlauf — und deine Fragen.</td></tr>
+            <tr><td>Nie gesendet</td><td>Fotos und der API-Key selbst.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        <strong>Notizen</strong> sind das Feld, in dem am ehesten Persönliches landet. Sie gehen
+        standardmäßig mit ins Dossier, weil sie für eine Diagnose oft das Wertvollste sind — etwa
+        der Vermerk, dass ein Test direkt nach dem Wasserwechsel gemacht wurde. Abschalten lässt
+        sich das mit einem Tipp in den Einstellungen oder direkt in der Vorschau; die Wirkung ist
+        dort sofort sichtbar.
+      </p>
+      <p>
+        Die Zustimmung zur Übertragung erteilst du einmal im Aufklärungsdialog. In den
+        Einstellungen steht sie als Schalter und lässt sich widerrufen — danach fragt die App vor
+        der nächsten Beratung erneut. Die Foto-Suche bei Wikimedia Commons sendet nur den
+        Suchbegriff und läuft ohne Anthropic.
+      </p>
+      <p>
+        <strong>Der Pro-Kauf</strong> läuft über Google Play. Die App sieht keine Zahlungsdaten und
+        speichert nur ein Ja/Nein auf dem Gerät; Becken-, Besatz- oder Wasserwerte-Daten gehen
+        dabei nicht an Google. Um Preis und Kaufstatus zu erfahren, fragt die App die
+        Play-Dienste auf deinem Gerät.
+      </p>
+    </section>
+
+    <section id="sprache">
+      <p class="eyebrow">Einstellungen</p>
+      <h2>Sprache und Formate</h2>
+      <p>
+        Die App spricht Deutsch, Englisch und Spanisch; standardmäßig folgt sie der
+        Systemsprache, umstellbar unter <em>Einstellungen → Sprache</em>. Zahlen und Datumsangaben
+        folgen der gewählten Sprache — <span class="val">6,8</span> auf Deutsch,
+        <span class="val">6.8</span> auf Englisch.
+      </p>
+      <p>
+        Auch die KI antwortet in der eingestellten Sprache. Steckbriefe werden je Sprache getrennt
+        gespeichert, ein Wechsel macht also keinen deutschen Text in einer englischen Oberfläche.
+        Die Sprache einer laufenden Beratung bleibt dagegen festgeschrieben — ein Wechsel mitten
+        im Dialog würde den Zwischenspeicher verwerfen und jede Folgeantwort verteuern.
+      </p>
+    </section>
+
+    <section id="grenzen">
+      <p class="eyebrow">Ehrlichkeit</p>
+      <h2>Was die App bewusst nicht tut</h2>
+      <ul>
+        <li><strong>Nichts still im Hintergrund abrufen.</strong> Jede KI-Anfrage geht auf einen
+          Tipp von dir zurück.</li>
+        <li><strong>Nichts automatisch anlegen.</strong> Vorschläge der KI werden erst zur
+          Aufgabe, wenn du im Formular speicherst.</li>
+        <li><strong>Nicht dosieren.</strong> Die Empfehlung ist ein Vorschlag; die Pumpe steuert
+          die App nicht.</li>
+        <li><strong>Keine Vorhersage.</strong> Der Trend beschreibt den gewählten Zeitraum, er
+          rechnet ihn nicht in die Zukunft.</li>
+        <li><strong>Keine medizinische Beratung.</strong> KI-Inhalte sind gekennzeichnet und
+          können falsch sein — bei Tieren bitte gegenprüfen.</li>
+        <li><strong>Keine Cloud.</strong> Kein Konto, keine Synchronisation zwischen Geräten. Der
+          Umzug läuft über das Backup.</li>
+      </ul>
+    </section>
+
+    <section id="hilfe">
+      <p class="eyebrow">Hilfe</p>
+      <h2>Wenn etwas klemmt</h2>
+      <div class="scroller">
+        <table>
+          <caption>Häufige Fälle</caption>
+          <thead>
+            <tr><th>Beobachtung</th><th>Ursache und Abhilfe</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Keine Benachrichtigungen</td>
+              <td>Unter <em>Einstellungen → Benachrichtigungen</em> die Diagnose prüfen:
+                Berechtigung erteilt? Akku-Optimierung aktiv? Sind Alarme geplant? Kommen
+                Meldungen zu spät, hilft „Exakte Erinnerungen“.</td>
+            </tr>
+            <tr>
+              <td>Eine Aufgabe taucht nicht mehr auf</td>
+              <td>Aufgaben ohne nächsten Termin erscheinen nicht in der Liste. Im
+                Aufgaben-Formular „Nächste Fälligkeit“ setzen oder aus der Wiederholung neu
+                berechnen lassen.</td>
+            </tr>
+            <tr>
+              <td>Kein Zielband, nur der Richtwert</td>
+              <td>Das individuelle Band braucht geladene Steckbriefe. Arten ohne Steckbrief
+                tragen nichts bei; für KH, NO₂, NO₃, PO₄, Fe und K gibt es grundsätzlich keines.</td>
+            </tr>
+            <tr>
+              <td>Keine Dosierempfehlung in ml</td>
+              <td>Es fehlt das Beckenvolumen oder ein Dünger mit diesem Nährstoff im Katalog.
+                Dann nennt die App nur die Richtung.</td>
+            </tr>
+            <tr>
+              <td>„Budget erreicht“</td>
+              <td>Das monatliche Limit greift. In den Einstellungen anheben oder den Zähler
+                zurücksetzen — die Abrechnung bei Anthropic bleibt davon unberührt.</td>
+            </tr>
+            <tr>
+              <td>„API-Key prüfen“</td>
+              <td>Der Schlüssel ist ungültig oder abgelaufen. Neu hinterlegen und „Verbindung
+                testen“.</td>
+            </tr>
+            <tr>
+              <td>Angezeigte Kosten weichen ab</td>
+              <td>Die Anzeige ist eine Schätzung anhand der hinterlegten Preise. Maßgeblich ist
+                dein Anthropic-Konto.</td>
+            </tr>
+            <tr>
+              <td>Steckbrief wirkt falsch</td>
+              <td>„Manuell bearbeiten“ — deine Änderung gewinnt dauerhaft und wird von späteren
+                Abrufen nicht überschrieben.</td>
+            </tr>
+            <tr>
+              <td>Steht hier nicht drin</td>
+              <td>Unter <em>Mehr → Über → Feedback senden</em> öffnet sich eine vorbereitete
+                Mail mit Version und Sprache. Schreib, was du beobachtet hast und auf welchem
+                Gerät — beides zusammen erspart eine Rückfrage.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+      AquariumAI · Anwenderhandbuch zum Stand 27.09.2026. Alle Daten bleiben auf dem Gerät;
+      KI-Funktionen laufen über deinen eigenen Anthropic-API-Key. Angaben zu Pflege und Arten
+      ohne Gewähr.
+    </p>
+  </footer>
+</div>
+</body>
+</html>
