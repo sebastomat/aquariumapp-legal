@@ -434,16 +434,16 @@
 <body>
 <div class="wrap">
   <header class="masthead">
-    <p class="eyebrow">Anwenderhandbuch · Stand 27.09.2026</p>
+    <p class="eyebrow">Anwenderhandbuch · Stand 01.10.2026</p>
     <h1>AquariumAI Handbuch</h1>
     <p class="lede">
       Alles, was die App kann: Pflegeaufgaben mit Erinnerungen, Besatz mit KI-Steckbriefen,
       Wasserwerte mit Zielbändern und Trends, Düngung samt Dosierempfehlung und der KI-Berater,
-      der dein Becken kennt. Diese Seite beschreibt den Stand von Version 1.3.1.
+      der dein Becken kennt. Diese Seite beschreibt den Stand von Version 1.3.5.
     </p>
     <dl class="facts">
       <div><dt>Plattform</dt><dd>Android</dd></div>
-      <div><dt>Version</dt><dd>1.3.1</dd></div>
+      <div><dt>Version</dt><dd>1.3.5</dd></div>
       <div><dt>Sprachen</dt><dd>Deutsch · English · Español</dd></div>
       <div><dt>Konto nötig</dt><dd>Nein</dd></div>
       <div><dt>Daten</dt><dd>Bleiben auf dem Gerät</dd></div>
@@ -557,7 +557,7 @@
       </p>
       <dl class="rows">
         <div><dt>Haken-Knopf</dt><dd>Erledigt in einem Tipp, mit kurzer Bestätigung.</dd></div>
-        <div><dt>Tipp auf die Zeile</dt><dd>Detail-Blatt mit Notiz, optionalem Messwert und den Aktionen Erledigt, Verschieben, Bearbeiten.</dd></div>
+        <div><dt>Tipp auf die Zeile</dt><dd>Detail-Blatt mit Notiz, optionalem Messwert, dem Erledigungsdatum und den Aktionen Erledigt, Verschieben, Bearbeiten.</dd></div>
         <div><dt>Wischen nach rechts</dt><dd>Erledigt.</dd></div>
         <div><dt>Wischen nach links</dt><dd>Verschieben — um einen Tag oder auf ein eigenes Datum.</dd></div>
       </dl>
@@ -566,6 +566,25 @@
         beim Wasserwechsel, Milliliter beim Düngen, Werte beim Wasserwerte-Test. Messwert und
         Notiz landen im Verlauf.
       </p>
+
+      <h3>Später nachtragen</h3>
+      <p>
+        Pflegearbeiten passieren am Becken und werden oft erst später eingetragen. Im Detail-Blatt
+        steht dafür die Zeile <strong>Erledigt am</strong> — voreingestellt heute, auf Tipp wählst
+        du einen früheren Tag. Der Haken-Knopf und die Wischgeste bleiben beim heutigen Datum.
+      </p>
+      <p>
+        Das ist mehr als Kosmetik im Verlauf: Bei Ankermodus <em>ab Erledigung</em> zählt der
+        nächste Termin ab dem eingetragenen Tag. Wer jeden Wasserwechsel drei Tage später einträgt,
+        verschiebt den Rhythmus sonst jedes Mal um drei Tage.
+      </p>
+      <div class="callout">
+        <p>
+          Trägst du weiter zurück als dein Intervall lang ist — Wasserwechsel vor zehn Tagen bei
+          sieben Tagen Intervall —, ist die Aufgabe sofort wieder überfällig. Das ist kein Fehler:
+          Fällig war sie vor drei Tagen. Hak sie einfach noch einmal ab.
+        </p>
+      </div>
 
       <h3>Eine Aufgabe anlegen</h3>
       <p>
@@ -609,6 +628,33 @@
         gilt nur für den nächsten Termin, danach greift wieder die Regel. Eine Titeländerung
         verschiebt die Fälligkeit ausdrücklich nicht.
       </p>
+
+      <h3>Aufgaben mit festem Ende</h3>
+      <p>
+        Nicht jede Wiederholung läuft ewig. Ein Algenmittel wird vier Mal gegeben, eine Kur über
+        eine feste Zahl von Gaben. Dafür gibt es unter dem Ankermodus den Schalter
+        <strong>„Nach einer bestimmten Anzahl beenden“</strong> und daneben die Zahl.
+      </p>
+      <dl class="rows">
+        <div>
+          <dt>Was zählt</dt>
+          <dd>Jede Erledigung. Verschieben verbraucht nichts.</dd>
+        </div>
+        <div>
+          <dt>Am Ende</dt>
+          <dd>Die Aufgabe wird nicht mehr fällig und erinnert nicht mehr. Sie bleibt mitsamt
+            Verlauf stehen — gelöscht wird nichts, und du kannst sie jederzeit wieder aktivieren.</dd>
+        </div>
+        <div>
+          <dt>Wo du den Stand siehst</dt>
+          <dd>Im Detail-Blatt der Aufgabe: „Noch 2 von 4 Mal“.</dd>
+        </div>
+        <div>
+          <dt>Zahl nachträglich ändern</dt>
+          <dd>Zählt von vorn. Wer an einer laufenden Aufgabe „4“ einträgt, meint „noch vier Mal“ —
+            das Formular sagt es unter dem Feld an.</dd>
+        </div>
+      </dl>
 
       <h3>Mitgelieferte Vorlagen</h3>
       <p>Ein Tipp legt die Aufgabe mit vorbelegtem Intervall an; alles bleibt änderbar.</p>
@@ -1216,7 +1262,7 @@
 
   <footer>
     <p>
-      AquariumAI · Anwenderhandbuch zum Stand 27.09.2026. Alle Daten bleiben auf dem Gerät;
+      AquariumAI · Anwenderhandbuch zum Stand 01.10.2026. Alle Daten bleiben auf dem Gerät;
       KI-Funktionen laufen über deinen eigenen Anthropic-API-Key. Angaben zu Pflege und Arten
       ohne Gewähr.
     </p>
