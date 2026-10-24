@@ -434,16 +434,16 @@
 <body>
 <div class="wrap">
   <header class="masthead">
-    <p class="eyebrow">Anwenderhandbuch · Stand 10.10.2026</p>
+    <p class="eyebrow">Anwenderhandbuch · Stand 24.10.2026</p>
     <h1>AquariumAI Handbuch</h1>
     <p class="lede">
       Alles, was die App kann: Pflegeaufgaben mit Erinnerungen, Besatz mit KI-Steckbriefen,
       Wasserwerte mit Zielbändern und Trends, Düngung samt Dosierempfehlung und der KI-Berater,
-      der dein Becken kennt. Diese Seite beschreibt den Stand von Version 1.3.9.
+      der dein Becken kennt. Diese Seite beschreibt den Stand von Version 1.4.0.
     </p>
     <dl class="facts">
       <div><dt>Plattform</dt><dd>Android</dd></div>
-      <div><dt>Version</dt><dd>1.3.9</dd></div>
+      <div><dt>Version</dt><dd>1.4.0</dd></div>
       <div><dt>Sprachen</dt><dd>Deutsch · English · Español</dd></div>
       <div><dt>Konto nötig</dt><dd>Nein</dd></div>
       <div><dt>Daten</dt><dd>Bleiben auf dem Gerät</dd></div>
@@ -887,6 +887,48 @@
         <div><dt>Aufräumen</dt><dd>„Einträge auswählen“ für Mehrfachauswahl oder „Zeitraum löschen“ für den gerade angezeigten Abschnitt, mit Anzahl im Bestätigungsdialog.</dd></div>
       </dl>
 
+      <h3>Kanäle und Vorrat</h3>
+      <p>
+        Hast du eine Dosierpumpe, kannst du im Düngung-Tab jeden Kanal mit einem Dünger aus dem
+        Katalog belegen und eintragen, was in der Flasche ist. Von da an rechnet die App mit:
+        Jede Gabe zieht ab, und du siehst, wie lange der Vorrat noch reicht.
+      </p>
+      <dl class="rows">
+        <div>
+          <dt>Was du einträgst</dt>
+          <dd>„Füllstand: 500 ml" — also das, was <em>jetzt</em> in der Flasche ist, nicht das,
+            was du nachgefüllt hast. Einmal beim Flaschenwechsel genügt.</dd>
+        </div>
+        <div>
+          <dt>Was die App rechnet</dt>
+          <dd>Letzte Eintragung minus die Gaben seitdem. Korrigierst du später eine Dosierung
+            oder löschst einen Tag, an dem die Pumpe leer lief, stimmt die Restmenge wieder —
+            ein mitgezählter Wert wäre dann still falsch.</dd>
+        </div>
+        <div>
+          <dt>Reichweite</dt>
+          <dd>Aus der Tagesmenge deiner Dauerdosierung. Dosierst du von Hand, nimmt die App den
+            tatsächlichen Verbrauch der letzten dreißig Tage.</dd>
+        </div>
+        <div>
+          <dt>Zwischendurch nachmessen</dt>
+          <dd>Zeigt die App 385 ml und die Flasche sieht nach 300 aus, trag 300 ein. Ab da
+            rechnet sie von dort weiter; der alte Eintrag bleibt als Historie stehen.</dd>
+        </div>
+        <div>
+          <dt>Ohne Pumpe</dt>
+          <dd>Geht genauso — die Kanalnummer ist freiwillig.</dd>
+        </div>
+      </dl>
+      <div class="callout">
+        <p>
+          Der Vorrat gehört zum <strong>Becken</strong>, nicht zum Dünger. Benutzt du denselben
+          Dünger in zwei Becken, legst du zwei Kanäle an, und jeder zählt nur die Gaben seines
+          Beckens. Eine Benachrichtigung gibt es bewusst nicht: Ein zur Neige gehender Vorrat ist
+          kein Termin, und beim nächsten Blick in die App steht er früh genug da.
+        </p>
+      </div>
+
       <h3>Düngemittel-Katalog</h3>
       <p>
         Unter <em>Mehr → Düngemittel-Katalog</em> liegen deine Dünger becken-übergreifend: Marke,
@@ -1263,7 +1305,7 @@
 
   <footer>
     <p>
-      AquariumAI · Anwenderhandbuch zum Stand 10.10.2026. Alle Daten bleiben auf dem Gerät;
+      AquariumAI · Anwenderhandbuch zum Stand 24.10.2026. Alle Daten bleiben auf dem Gerät;
       KI-Funktionen laufen über deinen eigenen Anthropic-API-Key. Angaben zu Pflege und Arten
       ohne Gewähr.
     </p>
